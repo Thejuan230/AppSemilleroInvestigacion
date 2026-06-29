@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abstenin | Panel</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="card topbar">
+      <h1>Abstenin | Panel de <%= user.name %></h1>
+      <form method="post" action="/logout">
+        <button type="submit">Salir</button>
+      </form>
+    </section>
+
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+    <section class="card">
+      <h2>Resumen</h2>
+      <ul class="stats">
+        <li class="stat-item">Registros: <strong><%= data.stats.total_logs %></strong></li>
+        <li class="stat-item">Mayor racha de abstinencia: <strong><%= data.stats.max_abstinence_days %></strong> dias</li>
+        <li class="stat-item">Recaidas reportadas: <strong><%= data.stats.relapses %></strong></li>
+      </ul>
+    </section>
+
+    <section class="section-grid">
+      <article class="card">
+        <h2>Registro diario</h2>
+        <form method="post" action="/daily-logs" class="form-grid">
+          <label for="logDate">Fecha</label>
+          <input id="logDate" type="date" name="logDate" required />
+
+          <label for="mood">Estado emocional</label>
+          <input id="mood" type="text" name="mood" placeholder="Estado emocional" required />
+
+          <label for="riskLevel">Riesgo (1-10)</label>
+          <input id="riskLevel" type="number" name="riskLevel" min="1" max="10" placeholder="Riesgo 1-10" required />
+
+          <label for="abstinenceDayCount">Dias de abstinencia</label>
+          <input id="abstinenceDayCount" type="number" name="abstinenceDayCount" min="0" placeholder="Dias de abstinencia" required />
+
+          <label><input type="checkbox" name="hadRelapse" /> Hubo recaida</label>
+
+          <label for="notes">Notas</label>
+          <textarea id="notes" name="notes" placeholder="Notas"></textarea>
+          <button type="submit">Guardar</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Desencadenantes</h2>
+        <form method="post" action="/triggers" class="form-grid">
+          <label for="description">Desencadenante</label>
+          <input id="description" type="text" name="description" placeholder="Desencadenante" required />
+
+          <label for="copingStrategy">Estrategia de afrontamiento</label>
+          <input id="copingStrategy" type="text" name="copingStrategy" placeholder="Estrategia de afrontamiento" required />
+
+          <label for="intensity">Intensidad (1-10)</label>
+          <input id="intensity" type="number" name="intensity" min="1" max="10" placeholder="Intensidad 1-10" required />
+          <button type="submit">Agregar</button>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>Plan de emergencia</h2>
+        <form method="post" action="/contacts" class="form-grid">
+          <label for="contactName">Nombre del contacto</label>
+          <input id="contactName" type="text" name="contactName" placeholder="Nombre del contacto" required />
+
+          <label for="phone">Telefono</label>
+          <input id="phone" type="text" name="phone" placeholder="Telefono" required />
+
+          <label for="relationship">Relacion</label>
+          <input id="relationship" type="text" name="relationship" placeholder="Relacion" />
+          <button type="submit">Agregar contacto</button>
+        </form>
+      </article>
+    </section>
+
+    <section class="section-grid">
+      <article class="card">
+        <h3>Ultimos registros diarios</h3>
+        <ul class="list">
+          <% data.dailyLogs.forEach(function(log) { %>
+            <li><%= log.log_date %> | <%= log.mood %> | riesgo <%= log.risk_level %> | abstinencia <%= log.abstinence_day_count %> dias</li>
+          <% }) %>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Desencadenantes registrados</h3>
+        <ul class="list">
+          <% data.triggers.forEach(function(trigger) { %>
+            <li><%= trigger.description %> -> <%= trigger.coping_strategy %> (intensidad <%= trigger.intensity %>)</li>
+          <% }) %>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Contactos de apoyo</h3>
+        <ul class="list">
+          <% data.emergencyContacts.forEach(function(contact) { %>
+            <li><%= contact.contact_name %> - <%= contact.phone %> (<%= contact.relationship %>)</li>
+          <% }) %>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

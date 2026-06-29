@@ -1,0 +1,158 @@
+:root {
+  --bg: #f7efe6;
+  --surface: #fffaf5;
+  --surface-strong: #f2e2d0;
+  --text: #3c2d22;
+  --muted: #6f5a4a;
+  --primary: #c97f4f;
+  --primary-hover: #b56f42;
+  --accent: #9b6a4e;
+  --border: #e7d5c3;
+  --danger-bg: #f8d9d2;
+  --danger-text: #8a3b2f;
+  --shadow: 0 10px 24px rgba(60, 45, 34, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(180deg, #fbf4eb 0%, var(--bg) 100%);
+  color: var(--text);
+}
+
+.page {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.auth-card {
+  max-width: 480px;
+  margin: 4rem auto;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: #fff;
+  color: var(--text);
+}
+
+textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--primary);
+  color: #fff8f2;
+  padding: 0.65rem 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid #efb8ad;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stat-item {
+  background-color: var(--surface-strong);
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.list li {
+  background-color: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+}

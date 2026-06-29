@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abstenin | Registro</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="card auth-card">
+      <h1>Abstenin</h1>
+      <p>Crea tu cuenta</p>
+      <% if (error) { %><p class="error"><%= error %></p><% } %>
+      <form method="post" action="/register" class="form-grid">
+        <label for="name">Nombre</label>
+        <input id="name" type="text" name="name" placeholder="Tu nombre" required />
+
+        <label for="email">Correo</label>
+        <input id="email" type="email" name="email" placeholder="tu@correo.com" required />
+
+        <label for="password">Contrasena</label>
+        <input id="password" type="password" name="password" placeholder="Crea una contrasena" required />
+
+        <button type="submit">Crear cuenta</button>
+      </form>
+      <p><a href="/login">Ya tengo cuenta</a></p>
+    </section>
+  </main>
+</body>
+</html>
